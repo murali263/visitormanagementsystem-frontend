@@ -1,0 +1,322 @@
+<!-- <p>addadmin works!</p> -->
+<div class="container mt-5">
+   
+    <mat-tab-group mat-align-tabs="start" [selectedIndex]="selectedTab">
+        <mat-tab label="Admins">
+     
+            <div class="container">
+                <div class="row p-4">
+                  <div class="col-md-12">
+                    <div class="">
+                      <div class="">
+                        <!-- <h4 class="card-title">Admin</h4> -->
+                        <!-- <p class="card-category">Admin List</p> -->
+                      </div>
+                      <div class="table-responsive">
+                          
+<!-- <mat-form-field class="searchMethod" class="d-flex justify-content-start" >
+    <input matInput [(ngModel)]="searchedText" (keyup.enter)="applyFilter($event)" placeholder=" Search by SEZ name..." #input> -->
+    <!-- <img matPrefix imgSrc="Web/search.png" style="height: 17px;padding-right: 1em;"></img> -->
+    <!-- <mat-icon  matSuffix style="cursor: pointer; color: #6cb33f;" (click)="clear()">clear</mat-icon>
+  </mat-form-field> -->
+                       
+<table mat-table [dataSource]="data" (matSortChange)="sortData($event)" matSort class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="First name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="fname"> Name </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'inactive': element.isActive==false}"> {{element.fname}} {{element.lname}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="Last name">
+        <th mat-header-cell *matHeaderCellDef> Last name </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'inactive': element.isActive==false}" > {{element.lname}} </td>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Username">
+        <th mat-header-cell *matHeaderCellDef > Username </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'inactive': element.isActive==false}"> {{element.username}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Phone number" >
+        <th mat-header-cell *matHeaderCellDef > Phone Number </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'inactive': element.isActive==false}"> {{element.phonenumber}} </td>
+    </ng-container>
+    <!-- Inactive/active toggle -->
+    <ng-container matColumnDef="account_Status">
+         <th mat-header-cell *matHeaderCellDef> Account Status </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle [(ngModel)]="element.isActive" (change)="updateaccStatus($event,element)" >
+                <div class="active"  *ngIf="element.isActive==true">
+                    <p style="color: green; margin:unset; ">Active</p>
+                    <!-- <span class="badge badge-pill badge-success">Active</span> -->
+                  </div>
+                  <div class="in-active"  *ngIf="element.isActive==false">
+                    <p  style="color: rgb(191, 44, 44);margin: unset"> In-Active</p>
+                     <!-- <span class="badge badge-pill badge-danger">In-active</span> -->
+                  </div>
+            </mat-slide-toggle>
+        </td>
+    </ng-container>
+   
+    <!-- actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">
+            
+            <a class="mr-2" (click)="editguard(element)"><i class="fas fa-pen"></i> </a> 
+
+             <a class="ml-2" (click)="deletegraud(element)"> <i class="fas fa-trash" style="color: rgba(214, 57, 57, 0.994); margin-right: 10px;cursor: pointer;"></i> </a> 
+         
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+</table>
+                          
+                          
+                        <!-- {{adminExsit}} -->
+                        <!-- [ngStyle]="row?.username ? {'background-color':'#DDFAC6'}:{'background-color':'#832A33 '}" -->
+                        <!-- No Records -->
+                        <div class="nodata text-center " *ngIf="!data?.length">
+                          <div class="d-flex justify-content-center align-items-center mt-5 container">
+                            <img src="../../assets/images/SuperAdmin/undraw_empty_xct9.svg" alt="" height="" width="30%">
+                          </div>
+                          <h3>No Records ...! </h3>
+                        </div>
+              <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" [length] = "count"  (page)="getPageLimit($event)">
+              </mat-paginator>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+        </mat-tab>
+        <mat-tab label="Add New Admin">
+            <div class="container mt-4">
+                <div class="row p-4">
+                  <div class="col-md-12">
+                    <div class="card shadow">
+                      <!-- <div class="card-header card-header-danger shadow-sm">
+                        <h4 class="card-title">Admin</h4> -->
+                        <!-- <p class="card-category m-3">Add New Admin</p> -->
+                      <!-- </div> -->
+                      <div class="card-body" style="padding-top: -50px;">
+                       
+                        <div class="row">
+                            <div class="col-md ">
+                                <form [formGroup]="addadminForm" #formadd="ngForm"
+                                    (ngSubmit)="addadmin()">
+                                    <div class="row ">
+                                       
+                                           <div class="col  justify-content-center align-items-center">
+
+                                           <div class="row">
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="First Name" formControlName="fname" id="fname" (keyup)="caps($event)">
+                                                <mat-error *ngIf="addadminForm.controls['fname'].invalid ">
+                                                    <div *ngIf="addadminForm.controls['fname'].errors.required">
+                                                        First Name Is Required
+                                                    </div>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Last Name" formControlName="lname" id="lname" (keyup)="caps($event)">
+                                                <mat-error *ngIf="addadminForm.controls['lname'].invalid">
+                                                    <div *ngIf="addadminForm.controls['lname'].errors.required">
+                                                        Last Name Is Required
+                                                    </div>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="User Name" formControlName="username">
+                                                <mat-error *ngIf="addadminForm.controls['username'].invalid ">
+                                                    <div *ngIf="addadminForm.controls['username'].errors.required">
+                                                        User Name Is Required
+                                                    </div>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Phone Number"  maxlength="10"  formControlName="phonenumber"
+                                                    type="text">
+                                                      <span matPrefix>+91 &nbsp;</span>
+                                                    <mat-error *ngIf="addadminForm.controls['phonenumber'].invalid ">
+                                                        <div *ngIf="addadminForm.controls['phonenumber'].errors.required">
+                                                            Phone Number Is required
+                                                        </div>
+                                                        
+                                                        <div *ngIf="addadminForm.controls['phonenumber'].errors.maxlength">
+                                                            Phone Number Should Be Accepted 10 Digits
+                                                        </div>
+                                                        
+                                                        <div *ngIf="addadminForm.controls['phonenumber'].errors.pattern">
+                                                            Invalid Phone Number
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Email Address" formControlName="email"
+                                                    type="text">
+                                                  
+                                                    <mat-error *ngIf="addadminForm.controls['email'].invalid ">
+                                                        <div
+                                                            *ngIf="addadminForm.controls['email'].errors.required">
+                                                            Email Is Required
+                                                        </div>
+                                                        <div
+                                                        *ngIf="addadminForm.controls['email'].errors.pattern">
+                                                        Invalid Email
+                                                    </div>                         
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Aadhaar No" formControlName="aadharno"
+                                                    type="text" appAadharcard>
+                                                <mat-error *ngIf="addadminForm.controls['aadharno'].invalid ">
+                                                    <div *ngIf="addadminForm.controls['aadharno'].errors.required">
+                                                        Aadhar No.  Is Required
+                                                    </div>
+                                                    <div *ngIf="addadminForm.controls['aadharno'].errors.pattern">
+                                                        Aadhaar Number Must Be 12 Digits
+                                                    </div>
+                                                </mat-error>
+                                            </mat-form-field>
+                                           </div>
+                                        <div class="col">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Password" formControlName="password"
+                                                [type]="hide ? 'password' : 'text'">
+                                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                  </button>
+                                                <mat-error *ngIf="addadminForm.controls['password'].invalid ">
+                                                    <div *ngIf="addadminForm.controls['password'].errors.required">
+                                                        Password Is Required
+                                                    </div>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    <div class="col justify-content-center align-items-center">
+                                        <p style="font-size: 15px;font-weight: bold;">Address</p>
+                                        <div formGroupName="address" [formGroup]="addadminForm.controls.address" class="row">
+                                            <div class="col">
+                                                <mat-form-field>
+                                                    <input matInput placeholder="Door No" formControlName="doorno"
+                                                        type="text">
+                                                    <mat-error *ngIf="addadminForm.controls['address']['controls'].doorno.invalid ">
+                                                        <div *ngIf="addadminForm.controls['address']['controls'].doorno.errors.required">
+                                                            Door No.  Is Required
+                                                        </div>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field>
+                                                    <input matInput placeholder="Street" formControlName="street" id="street" (keyup)="caps($event)"
+                                                        type="text">
+                                                        <mat-error *ngIf="addadminForm.controls['address']['controls'].street.invalid ">
+                                                            <div *ngIf="addadminForm.controls['address']['controls'].street.errors.required">
+                                                                Street Is Required
+                                                            </div>
+                                                        </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        
+                                            <div class="col">
+                                                <mat-form-field>
+                                                    <mat-label>Select State</mat-label>
+                                                    <mat-select formControlName="state" (selectionChange)="changeState($event.value)" id="state" (keyup)="caps($event)">
+                                                      <mat-option  *ngFor="let z of states, let i = index" [value]="i" >{{z.state}}</mat-option>
+                                                    </mat-select>
+                                                    <mat-error
+                                                    *ngIf="addadminForm.controls['address']['controls'].state.invalid ">
+                                                    <div
+                                                        *ngIf="addadminForm.controls['address']['controls'].state.errors.required">
+                                                        State Is Required
+                                                    </div>
+                                                </mat-error>
+                                                  </mat-form-field>    
+                                            </div>
+
+                                            <div class="col">
+                                                <mat-form-field>
+                                                    <mat-label>Select City</mat-label>
+                                                    <mat-select placeholder="City" formControlName="city" id="city"  
+                                                    type="text">
+                                                      <mat-option *ngFor="let eachDistrict of selectedStateDistricts, let i = index" [value]="eachDistrict">{{eachDistrict}}</mat-option>
+                                                     
+                                                    </mat-select>
+                                                    <mat-error
+                                                        *ngIf="addadminForm.controls['address']['controls'].city.invalid ">
+                                                        <div
+                                                            *ngIf="addadminForm.controls['address']['controls'].city.errors.required">
+                                                            City Is Required
+                                                        </div>
+                                                    </mat-error>
+                                                  </mat-form-field>    
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <mat-form-field>
+                                                    <input matInput placeholder="Zip code" maxlength="6" formControlName="zip" maxlength="6"
+                                                        type="text">
+                                                        <mat-error
+                                                        *ngIf="addadminForm.controls['address']['controls'].zip.invalid ">
+                                                        <div
+                                                            *ngIf="addadminForm.controls['address']['controls'].zip.errors.required">
+                                                            Zip Code Is Required
+                                                        </div>
+                                                        <div
+                                                            *ngIf="addadminForm.controls['address']['controls'].zip.errors.pattern">
+                                                            Zip Code Must Be 6 Digits
+                                                        </div>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button mat-raised-button color="primary" type="submit">Add Admin </button>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </mat-tab>
+        <!-- <mat-tab label="Third">Content 3</mat-tab> -->
+    </mat-tab-group>
+<!-- {{addadminForm.value|json}} -->
+
+</div>

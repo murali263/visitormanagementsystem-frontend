@@ -1,0 +1,298 @@
+
+<div class="row container-fluid">
+    <div class="col-md-3">
+      <div class="card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon"> <i class="fas fa-building"></i></div>
+          <p class="card-category">Companies</p>
+          <h3 class="card-title">{{countofcompany}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+          <div class="stats"><i class="material-icons text-danger">warning</i><a href="#pablo">Total Companies</a></div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stats">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon"><i class="fas fa-user-shield" style="margin-left:5px ;"></i></div>
+          <p class="card-category">Guards</p>
+          <h3 class="card-title">{{noofGuards}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+          <div class="stats"><i class="material-icons">local_offer</i> Total Guards </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          
+          <div class="card-icon"><i class="material-icons">
+            people_alt
+          </i></div>
+          <!-- <div class="card-icon"><i class="fa fa-users" aria-hidden="true"></i></div> -->
+          <!-- <div class="card-icon"><i class="material-icons">store</i></div> -->
+          <p class="card-category">Admins</p>
+          <!-- <p class="card-category">Revenue</p> -->
+          <h3 class="card-title">{{noofAdmins}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+          <div class="stats"><i class="material-icons">date_range</i> Total Admins </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stats">
+        <div class="card-header card-header-info card-header-icon">
+          <div class="card-icon"><i class="material-icons" aria-hidden="true">transfer_within_a_station </i></div>
+          <p class="card-category">Visitors</p>
+          <h3 class="card-title">{{visitorcount}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+          <div class="stats"><i class="material-icons">update</i> Total Visitors </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="row container-fluid">
+      <div class="col-md">
+          <div class="card  shadow  ">
+            <div class="row container">
+              <div class="text">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary active bg-primary ">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked (click)="week()"> Week
+                    </label>
+                    <label class="btn btn-primary bg-primary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"  (click)="month()"> Month
+                    </label>
+                    <label class="btn btn-primary bg-primary">
+                      <input type="radio" name="options" id="option3" autocomplete="off" (click)="year()"> Year
+                    </label>
+                  </div>
+            <!-- <button class="btn btn-primary rounded border text-right" (click)="week()">Week</button>
+                <button class="btn btn-primary rounded border" (click)="month()">Month</button>
+                <button class="btn btn-primary rounded border " (click)="year()">Year</button> -->
+              </div>
+            </div>
+            <div>
+
+              
+              <div class="chart">
+                <!-- <canvas height="100"
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartData"
+                    [labels]="chartLabels"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartClick)="onChartClick($event)">
+                </canvas> -->
+                <canvas height="100" baseChart [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels"
+                [options]="chartOptions"  (chartClick)="onChartClick($event)">
+            </canvas>
+              </div>
+  
+            </div>
+           
+              </div>
+      </div>
+  </div>
+  <app-sezusersandsezdetails></app-sezusersandsezdetails>
+  <!-- <div class="container-fluid">
+  <div class="row ">
+  <div class="col-lg-6 col-md-12">
+    <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <span class="nav-tabs-title">SEZ DETAILS:</span>
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                <i class="fa fa-globe mr-2" aria-hidden="true"></i>SEZ DETAILS
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                <i class="fas fa-building mr-2"></i> Companies
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a mat-button class="nav-link" href="#settings" data-toggle="tab">
+                      <i class="material-icons mr-2" aria-hidden="true">transfer_within_a_station </i>Visitors
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-body sezCardBody shadow">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <table class="table ">
+                                <tbody>
+                                    <tr>
+                                        <div class="form-group">
+                                            <select name="selectsez" id="" #ref class="form-control"
+                                                (change)="selectedSez(ref.value)" ngModel>
+                                                <option value="">Select SEZ..</option>
+                                                
+
+                                                <option *ngFor="let v of sezArray" [value]="v.scode">{{v.sname}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf=selectedSezObj>
+                                            <div class="text-center selectSezContent mt-5">
+                                                <img src="../../assets/images/SuperAdmin/undraw_best_place_r685.svg"
+                                                    alt="" width="80%">
+                                                <img src="../../assets/images/SuperAdmin/fc71635c7f1b09ed30413f59bb749582.gif"
+                                                    alt="" width="60%">
+                                            </div>
+                                            <div class="row companiesContent font">
+                                                <table class="table  borderless
+                                                justify-content-center align-items-center">
+                                                    <tr>
+                                                        <td>SEZ NAME</td>
+                                                        <td>
+                                                            {{selectedSezObj.sname| titlecase}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> SEZ LOCATION</td>
+                                                        <td>
+                                                            {{selectedSezObj.sezlocation| titlecase}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                             
+                                            </div>
+                                        </div>
+                                        <div class="text-dark text-center" *ngIf="!selectedSezObj">
+                                            <div class="d-flex justify-content-center ">
+                                                <img src="../../assets/images/SuperAdmin/undraw_following_q0cr.svg"
+                                                    alt="" height="40%" width="70%">
+                                            </div>
+                                            <h1>SELECT SEZ</h1>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane " id="messages">
+                            <table class="table text-dark">
+                                <thead class="companiesContentColor">
+                                    <th>COMPANY NAME</th>
+                                    <th>COMPANY ID</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let v of sezCompanies">
+                                        <td>{{v.companyname}}</td>
+                                        <td>{{v.compcode}}</td>
+                                    </tr>
+                                  
+                                </tbody>
+                            </table>
+                            <div class="text-dark text-center selectSezPic" *ngIf="!sezUsers">
+                                <div class="d-flex justify-content-center ">
+                                    <img src="../../assets/images/SuperAdmin/undraw_following_q0cr.svg" alt=""
+                                        height="20%" width="70%">
+                                </div>
+                                <h1>SELECT SEZ</h1>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            <table class="table">
+                                <thead class="companiesContentColor">
+                                    <th>COMPANY NAME</th>
+                                    <th>VISITORS </th>
+                                </thead >
+                                <div *ngIf="!visitors_comapnies" class="text-center">
+
+                                    <img  src="../../assets/assets/images/gallery/fc71635c7f1b09ed30413f59bb749582.gif" width="100%" alt="">
+                                    <h1>No Visitors...!!</h1>
+                                </div>
+                                <tbody >
+                                    <tr *ngFor="let v of companyvisitordata ">
+                                        <td>
+                                           {{v.company_name}}
+                                        </td>
+                                        <td>{{v.members}}</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="visitors_comapnies" >
+                                    <tr *ngFor="let v of visitors_comapnies">
+                                        <td>
+                                            <div *ngFor="let y of sezCompanies">
+                                                <div *ngIf="y.compcode == v.company_code">
+                                                    {{y.companyname}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{v.total_visitors}}</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tbody> -->
+                                <!-- <tbody *ngIf="sezCompanies">
+                                    <tr *ngFor="let x of sezCompanies">
+                                        <td>{{x.companyname}}</td>
+                                        <td>{{x.compcode}}</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tbody>
+                                <tbody >
+                                    <td  *ngFor="let v of sezCompanies">
+                                        {{v.companyname}}
+                                    
+                                </td>
+                                <td>{{v.total_visitors}}</td>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-12">
+    <div class="card">
+        <div class="card-header card-header-warning card-header-warning-sezdetails" style="padding: 15px;">
+            <h4 class="card-title" style="margin:5px;">SEZ User's</h4>
+            
+            <p class="card-category" style="margin:5px;">Admins, Sub-Admins, Guards</p>
+        </div>
+        <div class="card-body table-responsive sezCardBody">
+            <table class="table table-hover">
+                <thead class="text-warning">
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let v of sezUsers;let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{v.username}}</td>
+                        <td>{{v.phonenumber}}</td>
+                        <td>{{v.email}}</td>
+                        <td>{{v.role}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  </div>
+  </div> -->
+

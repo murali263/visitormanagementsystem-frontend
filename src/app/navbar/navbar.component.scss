@@ -1,0 +1,150 @@
+
+ mat-toolbar {
+    background: #35355B;
+    color:white;
+  
+  }
+
+  ::ng-deep .customize{
+    background: #fff;
+    color: black
+  }
+  ::ng-deep .customize a{
+    color: #fff
+  }
+  ::ng-deep .menu-button{
+    margin-left: 5px;
+  }
+  mat-sidenav {
+  
+    width: 220px;
+    background-color: #8485A4;
+  
+    /* color: #fff; */
+    /* border-radius: 1px; */
+    /* text-align: center; */
+  }
+  
+  mat-sidenav-container {
+    height: calc(100vh - 65px);
+    background-color: #efefef
+  
+  }
+  
+  .menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+  }
+  
+  .profile_icon{
+    margin-left: 200vh;
+  }
+  /* .space{
+  flex: 1 1 auto;
+  border-radius: 15px;
+  height: 50px;
+  width: 50px;
+  } */
+  .space{
+    flex:0.5
+  }
+  .d-one{
+    display: grid;
+    margin-bottom: -15px;
+  
+  }
+  .mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height:22px;
+    width: 24px;
+    cursor: pointer;
+  }
+  
+  .left-sidebar-header{
+    user-select: none;
+    position: absolute;
+    height: 65px;
+    padding-top: 20px;
+    margin-left: 60px;
+    color:white;
+  }
+  .is-active {
+    background-color: #ffffff;
+    border-radius: 25px;
+    color: #7D93CA;
+}
+a{
+  color: #ffffff;
+}
+.a-hov:hover{
+  background-color: #ffffff;
+  color: #7D93CA;
+  border-radius: 25px;
+}
+  .center-toolbar-heading{
+    font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size:35px;
+  line-height: 42px;
+  color: white;
+  }
+  @media screen and (max-width: 600px) {
+    .center-toolbar-heading{
+  
+    font-size:20px;
+  
+    }
+  }
+
+  
+  
+   .profile{
+     background-color:white;
+      color:purple;
+      font-size:40px;
+  
+   }
+  
+    .out{
+      position: absolute;
+     left: 220px;
+  
+    }
+    .user{
+      position: absolute;
+      left: 70px;
+      top: 20px;
+    }
+  .icon-headers{
+    height: 24px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+.profile-img{
+    img{
+        width: 50px;
+        height: 50px;
+    }
+
+}  
+.logout{
+    cursor: pointer;
+    color: black;
+    margin-top: 15px;
+}
+.user-details{
+    color: #000;
+    font-size: 15px;
+    display: inline-grid;
+}
+
+  
+  

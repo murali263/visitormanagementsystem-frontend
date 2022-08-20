@@ -1,0 +1,141 @@
+h3 {
+  font-size: 200%;
+  color: rgb(89, 104, 109);
+  font-weight: 400;
+}
+.modal-backdrop {
+  display: none;
+  z-index: 1040 !important;
+}
+
+.modal-content {
+  margin: 2px auto;
+  z-index: 1100 !important;
+}
+.fcsize {
+  font-size: 20px;
+}
+.card-header {
+  background: linear-gradient(60deg, #e75d6c, #df5f5d);
+  // background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  // background-repeat-x: initial;
+  // background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+}
+[class*="card-header-"] {
+  margin: 0px 15px 0;
+  padding: 10px;
+}
+.card-header {
+  z-index: 9 !important;
+  margin-top: -20px;
+
+  .card-title {
+    margin-bottom: 3px;
+  }
+
+  .card-category {
+    margin: 0;
+  }
+  .card-header,
+  h4,
+  p {
+    color: white;
+  }
+}
+
+.w-100 {
+  max-width: 100px;
+}
+.shape {
+  margin-top: 5%;
+}
+
+// .mat-footer-row,
+// .mat-header-row,
+// .mat-row {
+//   display: inline-flex;
+//   min-width: 100%;
+// }
+
+// mat-cell:nth-child(4),
+// mat-header-cell:nth-child(4) {
+//     flex: 0 0 30%;
+// }
+
+// mat-cell:nth-child(5),
+// mat-header-cell:nth-child(5) {
+//     flex: 0 0 10%;
+// }
+table {
+  width: 100%;
+}
+th.mat-header-cell {
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #F5F5F5;
+  border: 1px solid #e9ecef;
+  box-sizing: border-box;
+  border: hidden;
+  align-items: center;
+  text-align: left;
+  // font-family: Poppins;
+  font-style: normal;
+  // font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  /* or 150% */
+
+  color: #838383,
+}
+.heading{
+  color:  #676883;
+  font-size: 18px;
+  font-weight: 600;
+}
+.table-design{
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: #D8D8D8;
+  padding: 0;
+  margin-top: 26px;
+}
+// td.mat-cell{
+//     // font-weight: 500;
+//     // color: grey;
+// }
+
+td.mat-cell {
+  // position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  // border-left: 1px solid #E0E0E0;
+  // box-sizing: border-box;
+  // border:hidden;
+  text-align: left;
+  // font-family: Poppins;
+  font-style: normal;
+  font-weight: 410;
+  font-size: 14px;
+  line-height: 35px;
+   color: #838383;
+}
+.addbtn{
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+}

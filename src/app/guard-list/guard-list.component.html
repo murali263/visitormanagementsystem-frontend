@@ -1,0 +1,87 @@
+<div class="container">
+  <mat-card class="shape">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-left">
+          <label>
+            <h1 class="heading">Guards List</h1>
+          </label>
+          <mat-form-field class="searchMethod" style="margin-top: -23px;" class=" d-flex justify-content-end">
+            <img matPrefix imgSrc="Web/search.png" style="height: 17px;padding-right: 1em;" />
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search by guard name" #input>
+            <mat-icon *ngIf="searchedText==''" class="material-icons searchicon" matSuffix>
+              search
+            </mat-icon>
+            <!-- <mat-icon *ngIf="searchedText!=''" matSuffix (click)="clear()">clear</mat-icon> -->
+          </mat-form-field>
+        </div>
+        <div class="float-right d-flex p-3">
+          <button mat-raised-button color="primary" type="submit" (click)="addGuard()">Add Guard </button>
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="card-body table-responsive table-design" style="margin-top: 0;">
+          <table mat-table [dataSource]="gaurdArr" matSort>
+            <!-- Name Column -->
+            <ng-container matColumnDef="Location/WorkArea">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Location/WorkArea</th>
+              <td mat-cell *matCellDef="let element"> {{element.ActiveLocation}} </td>
+            </ng-container>
+
+            <!-- Admin -->
+            <ng-container matColumnDef="FullName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> FullName </th>
+              <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+            </ng-container>
+
+            <!-- Contact Name -->
+            <ng-container matColumnDef="Phone Number">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+              <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+
+            </ng-container>
+
+            <!-- Email Address -->
+            <ng-container matColumnDef="Email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Address </th>
+              <td mat-cell *matCellDef="let element">
+                <p class="text-primary">{{element.email}}</p>
+              </td>
+            </ng-container>
+
+
+            <!-- Status -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+              <td mat-cell *matCellDef="let element"></td>
+            </ng-container>
+            <!-- actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let element" style="padding: 8px; display: flex;">
+                <a class="ml-2" (click)="deleteGuard(element)"> <i class="fas fa-trash"
+                    style="color: rgba(214, 57, 57, 0.994); margin-right: 10px;cursor: pointer;"></i> </a>
+                <span class="ml-2" (click)="updateguard(element)"> <i class="fas fa-pen"
+                    style="color: rgba(57, 99, 214, 0.994); margin-right: 10px;cursor: pointer;"></i>
+                </span>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+          <div class="nodata text-center" *ngIf="isVisible">
+            <div class="d-flex justify-content-center align-items-center mt-5 container">
+              <img src="../../assets/images/SuperAdmin/undraw_empty_xct9.svg" alt="" height="" width="30%" />
+            </div>
+            <h3>No Records Found</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

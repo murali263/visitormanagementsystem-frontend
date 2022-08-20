@@ -1,0 +1,28 @@
+<div id="left-nav-component" class="shadow-lg">
+
+    <div class="components" *ngIf="dataservice.role=='admin'">
+        <a routerLink='/admindashboard'> Admin Dashboard</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='admin'">
+        <a routerLink='/guards'> Guards</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='admin'">
+        <a routerLink='/addadmin'> Add Admin</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='admin'">
+        <a routerLink='/companies'> Companies</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='admin'">
+        <a routerLink='/adminprofile'> Profile</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='superadmin'">
+        <a routerLink='/dashboard'> Superadmin Dashboard</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='superadmin'">
+        <a routerLink='/superadmin'> Sez List</a>
+    </div>
+    <div class="components" *ngIf="dataservice.role=='superadmin'">
+        <a routerLink='/superadminprofile'>Profile</a>
+    </div>
+
+</div>

@@ -1,0 +1,55 @@
+
+  
+#left-nav-component {
+    width: 260px;
+    background: #fff;
+    // padding: 10px;
+    //height: 100%;
+    height: 100%;
+    // height: calc(100vh - 62px);
+    box-sizing: border-box;
+    overflow: auto;
+    min-height: 1000px;
+    position: static;
+    border-right: 1px solid #ddd ;
+    @media only screen and (max-width: 576px) {
+      width: 100vw;
+      position: fixed;
+      padding-bottom: 100px;
+      top: 60px;
+      font-weight: 100;
+      z-index: 11;
+    }
+    *,
+    &:before,
+    &:after {
+      box-sizing: border-box;
+    }
+   
+    .new-meeting {
+      color: white;
+    }
+   
+    .icon {
+      display: inline-block;
+      width: 24px;
+    }
+  }
+  .components{
+    padding: 8px;
+    margin: 10px;
+    a{
+      text-decoration: unset;
+      color: #e2eef2c2;
+      font-weight: 500;
+
+    }
+  }
+  .components:hover{
+  background: rgb(128 122 122 / 47%);
+  }
+
+  #left-nav-component{
+    // width: 50px;
+    background-color: rgba(21, 20, 20, 0.775);
+  }

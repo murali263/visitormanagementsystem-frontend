@@ -1,0 +1,273 @@
+<div class="row">
+  <div>
+    <div class="text-right m-2 mt-0 pr-0">
+      <h1 class="text-left" style="font-weight: 600"></h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid pt-2">
+  <div class="row">
+    <div class="text-left">
+      <h2>Create Visitor:</h2>
+    </div>
+    <div class="text-right" style="margin-top: -40px">
+      <i
+        class="fas fa-times text-right"
+        (click)="dialogRef.close()"
+        style="cursor: pointer; color: red"
+      ></i>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="container-fluid pb-3 scroll">
+  <div class="d-flex justify-content-center align-items-center gap-3">
+    <form [formGroup]="addvisitorform" (ngSubmit)="addVisitor()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="addmoreformcontrols">
+            <mat-form-field appearance="outline" style="column-gap: 10px">
+              <mat-label>Visitor Name</mat-label>
+              <input
+                matInput
+                placeholder="Visitor Name"
+                formControlName="visitorName"
+              />
+              <mat-icon matPrefix>account_circle</mat-icon>
+              <mat-error *ngIf="addvisitorform.controls['visitorName'].invalid">
+                <div
+                  *ngIf="
+                    addvisitorform.controls['visitorName'].errors?.required
+                  "
+                >
+                  Visitor name is required
+                </div>
+                <div
+                  *ngIf="addvisitorform.controls['visitorName'].errors?.pattern"
+                >
+                  {{ characterspattern }}
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Reference By</mat-label>
+              <input
+                matInput
+                placeholder="Reference By"
+                formControlName="referenceBy"
+                id="referenceBy"
+              />
+              <mat-icon matPrefix>people</mat-icon>
+              <mat-error *ngIf="addvisitorform.controls['referenceBy'].invalid">
+                <div
+                  *ngIf="
+                    addvisitorform.controls['referenceBy'].errors?.required
+                  "
+                >
+                  Reference name is required
+                </div>
+                <div
+                  *ngIf="addvisitorform.controls['referenceBy'].errors?.pattern"
+                >
+                  {{ characterspattern }}
+                </div>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" (click)="picker.open()">
+              <mat-label>Choose a date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                [min]="currentDate"
+                formControlName="visitDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="addvisitorform.controls['visitDate'].invalid">
+                <div
+                  *ngIf="addvisitorform.controls['visitDate'].errors?.required"
+                >
+                  Visitdate is required
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle Number</mat-label>
+              <input
+                matInput
+                placeholder="vehicleNumber"
+                formControlName="vehicleNumber"
+                id="vehicleNumber"
+              />
+              <mat-icon matPrefix>assignment_ind</mat-icon>
+      
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Visiting From</mat-label>
+              <input
+                matInput
+                placeholder="visitingFrom"
+                formControlName="visitingFrom"
+                id="visitingFrom"
+              />
+              <mat-icon matPrefix>where_to_vote</mat-icon>
+              <mat-error
+                *ngIf="addvisitorform.controls['visitingFrom'].invalid"
+              >
+                <div
+                  *ngIf="
+                    addvisitorform.controls['visitingFrom'].errors?.required
+                  "
+                >
+                  Visitingfrom is required
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="PhoneNumber"
+              formControlName="phoneNumber"
+              id="phoneNumber"
+            />
+            <mat-icon matPrefix>call</mat-icon>
+            <mat-error *ngIf="addvisitorform.controls['phoneNumber'].invalid">
+              <div
+                *ngIf="addvisitorform.controls['phoneNumber'].errors?.required"
+              >
+                Phone Number is required
+              </div>
+              <div
+                *ngIf="
+                  addvisitorform.controls.phonenumber?.dirty &&
+                  addvisitorform.controls.phoneNumber.errors?.maxlength
+                "
+              >
+                {{ maxlengthPhoneNumber }}
+              </div>
+              <div
+                *ngIf="
+                  addvisitorform.controls.phonenumber?.dirty &&
+                  addvisitorform.controls.phoneNumber.errors?.pattern
+                "
+              >
+                {{ PhoneNumberPattern }}
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              id="email"
+            />
+            <mat-icon matPrefix>email</mat-icon>
+            <mat-error *ngIf="addvisitorform.controls['email'].invalid">
+              <div *ngIf="addvisitorform.controls['email'].errors?.required">
+                Email is required
+              </div>
+              <div *ngIf="addvisitorform.controls['email'].errors?.pattern">
+                Email is invalid
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Members</mat-label>
+            <input
+              matInput
+              placeholder="members"
+              formControlName="members"
+              id="members"
+            />
+            <mat-icon matPrefix>people</mat-icon>
+            <mat-error *ngIf="addvisitorform.controls['members'].invalid">
+              <div *ngIf="addvisitorform.controls['members'].errors?.required">
+                Members is required
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Visit Time</mat-label>
+            <input
+              matInput
+              class="timepicker-overlay"
+              [ngxTimepicker]="toggleTimepicker1"
+              [format]="12"
+              [min]="currentTime"
+              (ngModelChange)="selectInTime($event)"
+              formControlName="visitTime"
+              required
+            />
+            <mat-icon matSuffix>
+              <div class="timepicker-overlay">
+                <ngx-material-timepicker-toggle
+                  class="timepicker-overlay"
+                  [for]="toggleTimepicker1"
+                >
+                </ngx-material-timepicker-toggle>
+                <ngx-material-timepicker
+                  class="timepicker-overlay"
+                  #toggleTimepicker1
+                >
+                </ngx-material-timepicker>
+              </div>
+              <mat-error *ngIf="addvisitorform.controls['visitTime'].invalid">
+                <div
+                  *ngIf="addvisitorform.controls['visitTime'].errors?.required"
+                >
+                  Visittime is required
+                </div>
+              </mat-error>
+            </mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Additional Info</mat-label>
+            <textarea
+              style="resize: none; max-height: 50px"
+              matInput
+              placeholder="AdditionalInfo"
+              formControlName="AdditionalInfo"
+              id="AdditionalInfo"
+            ></textarea>
+            <mat-icon matPrefix> chat</mat-icon>
+            <mat-error
+              *ngIf="addvisitorform.controls['AdditionalInfo'].invalid"
+            >
+              <div
+                *ngIf="
+                  addvisitorform.controls['AdditionalInfo'].errors?.required
+                "
+              >
+                Additional info is required
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="text-center">
+        <button mat-raised-button color="primary" type="submit">Save</button
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="dialogRef.close()"
+          style="cursor: pointer; color: red"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

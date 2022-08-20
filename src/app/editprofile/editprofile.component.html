@@ -1,0 +1,79 @@
+<!-- update form-->
+
+<div class="container">
+  <i class="fas fa-times float-right" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+  <h3>Update Profile</h3>
+  <form [formGroup]="updateForm">
+      <div class="row ">
+          <div class="col-md ">
+              <mat-form-field>
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="fname" placeholder="  First Name">
+                  <!-- <mat-error *ngIf="updateForm.controls['fname'].invalid ">
+                      <div *ngIf="updateForm.controls['fname'].errors.required">
+                          First name is required
+                      </div>
+                      <div *ngIf="updateForm.controls['fname'].errors.pattern">
+                          Enter Alphabet only
+                      </div>
+                  </mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lname" placeholder=" Last Name">
+                  <!-- <mat-error *ngIf="updateForm.controls['lname'].invalid">
+                      <div *ngIf="updateForm.controls['lname'].errors.required">
+                          Last name is required
+                      </div>
+                      <div *ngIf="updateForm.controls['lname'].errors.pattern">
+                          Enter Alphabet only
+                      </div>
+                  </mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Admin Username</mat-label>
+                  <input matInput formControlName="username" placeholder="Admin Username">
+                  <mat-error *ngIf="updateForm.controls['username'].invalid">
+                      <div *ngIf="updateForm.controls['username'].errors.required">
+                          Last name is required
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" formControlName="email" #email placeholder="AdminEmail">
+                  <mat-error *ngIf="updateForm.controls['email'].invalid ">
+                      <div *ngIf="updateForm.controls['email'].errors.required">
+                          email is required
+                      </div>
+                      <div *ngIf="updateForm.controls['email'].errors.pattern">
+                          Please provide a valid email address
+                      </div>
+                      <div *ngIf="emailAlredyExist != ''" class="alert alert-danger">
+                          {{emailAlredyExist}}
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput type="number" formControlName="phone" placeholder="Phone Number">
+                  <span matPrefix>+91  </span>
+                  <mat-error *ngIf="updateForm.controls['phone'].invalid ">
+                      <div *ngIf="updateForm.controls['phone'].errors.required">
+                          Phone number is required
+                      </div>
+                      <div *ngIf="updateForm.controls['phone'].errors.pattern">
+                          Please provide a valid phone number
+                      </div>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+          </div>
+      </div>
+      <div class="text-center">
+          <!-- <button mat-raised-button color="primary" (click)="update()">Submit</button> -->
+          <button mat-raised-button color="primary" (click)="updateprofile()">Submit</button>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<div class="container">
+  <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet">
+  <mat-card class="card mt-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-left">
+          <label>
+            <h1 class="heading">Visitor Pass</h1>
+          </label>
+
+          <div class="searchs">
+            <input #name type="text" placeholder="Search.." name="search" class="searchTerm">
+            <button type="submit" (click)="searchText(name.value)" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="float-right">
+
+          <ejs-daterangepicker appearance="none" style="color:black;" class="searchHeader" id="daterangepicker"
+            placeholder="Select a range" [startDate]="start" [endDate]="end" (change)="getVistorFilter($event)">
+          </ejs-daterangepicker>
+
+        </div>
+      </div>
+      <div class="col-md-12">
+
+        <div class="card-body table-responsive table-design" style="margin-top: 0;">
+          <h2 class="card-category fcsize inline-block mt-4 ml-4"><b>Visitors List</b></h2>
+          <table mat-table [dataSource]="totalvisitorList" matSort>
+            <ng-container matColumnDef="visitorname">
+              <th mat-header-cell *matHeaderCellDef> Visitor Name </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.visitorName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="contactnumber">
+              <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.phoneNumber}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="visitdate">
+              <th mat-header-cell *matHeaderCellDef> Visit Date </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.visitDate | date}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="visittime">
+              <th mat-header-cell *matHeaderCellDef> Visit Time </th>
+              <td mat-cell *matCellDef="let element"> {{element.visitTime}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="intime">
+              <th mat-header-cell *matHeaderCellDef> In Time </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.checkin}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="outtime">
+              <th mat-header-cell *matHeaderCellDef> Out Time </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.checkout}}</td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
