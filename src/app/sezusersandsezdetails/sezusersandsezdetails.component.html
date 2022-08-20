@@ -1,0 +1,219 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+            <h2 class="text-center sezing"> SEZ Details</h2>
+          <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" >
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#selectsez" role="tab">
+                  <i class="fa fa-globe" aria-hidden="true"></i>SELECT SEZ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#COMPANIES" role="tab">
+                   <i class="fas fa-building"></i> COMPANIES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#VISITORS" role="tab" style="padding: 5px;">
+                <i class="material-icons" aria-hidden="true">transfer_within_a_station </i>VISITORS CHECK IN-OUT</a>
+            </li>
+           
+          </ul>
+        </div>
+        <div class="card-body">
+            <!-- Tab panes -->
+            <div class="tab-content text-center">
+              <div class="tab-pane active" id="selectsez" role="tabpanel">
+              <div class="scroll-tab">
+        <div class="col">
+          <select name="selectsez" id=""  class="form-control" (change)="getTotalusers($event)">
+          <option value="">Select SEZ..</option>
+          <option [value]="eachSez.scode" *ngFor = "let eachSez of sezArray">{{eachSez.sname}}</option>
+      </select>
+            <!-- <mat-form-field apperiance="outline">
+                <mat-label>select sez</mat-label>
+                  <mat-select (sectionchange)="changeState()">
+                    <mat-option>--select one--</mat-option>
+                    <mat-option *ngFor = "let x of sezArray" [value]= "x.sname">{{x.sname}}</mat-option>
+                    
+                    
+                  </mat-select> 
+
+              </mat-form-field> -->
+
+             
+           
+        </div>
+        <div class="uldata">
+          <ul>
+            <li class="mb-3">SEZ Name &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; {{selectedSez?.sname}}</li>
+            <li>SEZ Location : &nbsp; {{selectedSez?.sezlocation}}</li>
+          </ul>
+        </div>
+      
+        
+              </div>
+  
+              </div>
+              <div class="tab-pane" id="COMPANIES" role="tabpanel">
+                <div class="scroll-tab">
+                    <table matSort (matSortChange)="sortDatathree($event)" matSortActive="name" matSortStart="asc" matSortDisableClear>
+                      
+                       
+                          <th mat-sort-header="companyname">COMPANY NAME</th>
+                          <th  mat-sort-header="compcode">COMPANY ID</th>
+                        
+                        <tr *ngFor="let v of sezcompnies ">
+                          <td >{{v.companyname}}</td>
+                          <td>{{v.compcode}}</td>
+                         
+                        </tr>
+                     
+                      </table>
+                  </div>
+              </div>
+              <div class="tab-pane" id="VISITORS" role="tabpanel">
+                <div class="scroll-tab">
+                    <!-- <table class="table" matSort (matSortChange)="sortData($event)"> -->
+                      <table class="table table-striped" matSort (matSortChange)="sortData($event)"   matSortActive="name" matSortStart="asc" matSortDisableClear class="mat-elevation-z8">
+                            <th mat-sort-header="company_name">  COMPANY NAME </th>
+                            <th mat-sort-header="members">VISITORS </th>
+                        
+                        <tbody >
+                            <tr *ngFor="let v of companyvisitordata | alphabetical:'company_name'">
+                                <td>
+                                   {{v.company_name}}
+                                </td>
+                                <td>{{v.members}}</td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+            <div class="card-headerr">
+                <h2 class="text-center sezingg"> SEZ Users</h2>
+              <ul class="nav nav-tabs nav-tabs-neutral " role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab"  role="tab">
+                    Admins, Sub-Admins, Guards
+                    </a>
+                </li>
+              
+               
+              </ul>
+            </div>
+            <div class="card-body">
+                <!-- Tab panes -->
+                <div class="tab-content text-center">
+                  <div class="tab-pane active"  role="tabpanel">
+                  <div class="scroll-tab">
+                    <!-- <table >
+                        <thead class="text-warning">
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th> Email Address</th>
+                            <th>Role</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let v of sezUsers;let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{v.username}}</td>
+                                <td>{{v.phonenumber}}</td>
+                                <td>{{v.email}}</td>
+                                <td>{{v.role}}</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+        
+                      
+                      <!-- <div class="mat-elevation-z8"> -->
+                        <!-- <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="sezUsers"> -->
+                          <table mat-table  [dataSource]="sezUsers"   matSort (matSortChange)="sortDataone($event)"  matSort class="mat-elevation-z8">
+                          <!-- ID Column -->
+                          <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef style="padding-left: 2px;"> ID </th>
+                            <td mat-cell *matCellDef="let i = index" style="padding-left: 2px;"> {{i+1}} </td>
+                          </ng-container>
+                          
+                          <!-- Progress Column -->
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef  mat-sort-header="username" >Name</th>
+                            <td mat-cell *matCellDef="let row"> {{row.username}} 
+                               </td>
+                          </ng-container>
+                      
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="Phone Number">
+                            <th mat-header-cell *matHeaderCellDef > Phone Number </th>
+                            <td mat-cell *matCellDef="let row"> {{row.phonenumber}} </td>
+                          </ng-container>
+                      
+                          <!-- Fruit Column -->
+                          <ng-container matColumnDef="Email Address">
+                            <th mat-header-cell *matHeaderCellDef > Email </th>
+                            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                          </ng-container>
+                          <ng-container matColumnDef="Role">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header="role">Role </th>
+                            <td mat-cell *matCellDef="let row"> {{row.role}} </td>
+                          </ng-container>
+                      
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                      <!-- </div> -->
+                      
+
+
+
+
+
+
+                  </div>
+                  </div>
+              
+                 
+                
+                </div>
+              </div>
+            </div>
+    
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-grid-list cols="2" rowHeight="4:4">
+    <mat-grid-tile>
+      
+    </mat-grid-tile>
+    <mat-grid-tile>
+        
+        
+    
+
+    </mat-grid-tile>
+  </mat-grid-list> -->
+  

@@ -1,0 +1,200 @@
+<div class="text-right  mt-4 mr-4"> 
+    <i class="fas fa-times" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+</div>
+<div class="container d-flex justify-content-center">
+        <div class="card-body">
+            <div class="text-center">
+                <h2>
+                    Edit details
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md ">
+                    <form [formGroup]="updgrdForm"  (ngSubmit)="addgrd()">
+                        <div class="row ">
+
+                            <div class="col  justify-content-center align-items-center">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="First name" formControlName="fname">
+                                            <mat-error *ngIf="updgrdForm.controls['fname'].invalid ">
+                                                <div *ngIf="updgrdForm.controls['fname'].errors.required">
+                                                    First name is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Last name" formControlName="lname">
+                                            <mat-error *ngIf="updgrdForm.controls['lname'].invalid">
+                                                <div *ngIf="updgrdForm.controls['lname'].errors.required">
+                                                    Last name is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Username" formControlName="username" min="1" [maxLength]="10" readonly >
+                                            <mat-error *ngIf="updgrdForm.controls['username'].invalid ">
+                                                <div *ngIf="updgrdForm.controls['username'].errors.required">
+                                                    User name is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Phone number" formControlName="phone"
+                                                type="number">
+                                                <span matPrefix>+91 &nbsp;</span>
+                                                <mat-error *ngIf="updgrdForm.controls['phone'].invalid ">
+                                                    <div *ngIf="updgrdForm.controls['phone'].errors.required">
+                                                        Phone number is required
+                                                    </div>
+                                                    <div *ngIf="updgrdForm.controls['phone'].errors.pattern">
+                                                        Invalid phone number
+                                                    </div>
+                                                  
+                                                </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Email"
+                                                formControlName="email" type="text">
+                                               
+                                            <mat-error *ngIf="updgrdForm.controls['email'].invalid ">
+                                                <div *ngIf="updgrdForm.controls['email'].errors.required">
+                                                    Email is required
+                                                </div>
+                                                <div *ngIf="updgrdForm.controls['email'].errors.pattern">
+                                                     Invalid email
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Aadhar No one" formControlName="aadharno"
+                                                type="text" appAadharcard >
+                                                <mat-error *ngIf="updgrdForm.controls['aadharno'].invalid ">
+                                                    <div
+                                                        *ngIf="updgrdForm.controls['aadharno'].errors.required">
+                                                        Aadhar No. is required
+                                                    </div>
+                                                    <div
+                                                    *ngIf="updgrdForm.controls['aadharno'].errors.pattern">
+                                                     Aadhar number must be 12 digits
+                                                </div>                         
+                                                </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+
+                        <span>Account status</span>
+                                    <mat-slide-toggle [(ngModel)]="data.isActive" formControlName="isActive" >
+                                        <p *ngIf="data.isActive==true">Active</p>
+                                        <p *ngIf="data.isActive==false">In-active</p>
+                                    </mat-slide-toggle>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col justify-content-center align-items-center">
+                                <p style="font-size: 15px;font-weight: bold;">Address one</p>
+                                <div formGroupName="address" [formGroup]="updgrdForm.controls.address" class="row">
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Door no" formControlName="doorno" type="text">
+                                            <mat-error
+                                                *ngIf="updgrdForm.controls['address']['controls'].doorno.invalid ">
+                                                <div
+                                                    *ngIf="updgrdForm.controls['address']['controls'].doorno.errors.required">
+                                                    Door No. is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Street" formControlName="street" type="text">
+                                            <mat-error
+                                                *ngIf="updgrdForm.controls['address']['controls'].street.invalid ">
+                                                <div
+                                                    *ngIf="updgrdForm.controls['address']['controls'].street.errors.required">
+                                                    Street is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                          
+                                            <mat-select   placeholder="State"  formControlName="state" (selectionChange)="changeState($event.value)" id="state" (keyup)="caps($event)">
+                                                <mat-option  *ngFor="let z of states, let i = index" [value]="i" >{{z.state}}</mat-option>
+                                              </mat-select>
+                                            <mat-error *ngIf="updgrdForm.controls['address']['controls'].city.invalid ">
+                                                <div
+                                                    *ngIf="updgrdForm.controls['address']['controls'].city.errors.required">
+                                                    City is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field>
+                                          
+                                            <mat-select placeholder="City" formControlName="city" id="city"  
+                                            type="text">
+                                              <mat-option *ngFor="let eachDistrict of selectedStateDistricts, let i = index" [value]="eachDistrict">{{eachDistrict}}</mat-option>
+                                             
+                                            </mat-select>
+                                            <mat-error
+                                                *ngIf="updgrdForm.controls['address']['controls'].state.invalid ">
+                                                <div
+                                                    *ngIf="updgrdForm.controls['address']['controls'].state.errors.required">
+                                                    State is required
+                                                </div>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Zip code" formControlName="zip" type="number">
+
+                                            <mat-error
+                                            *ngIf="updgrdForm.controls['address']['controls'].zip.invalid ">
+                                            <div
+                                                *ngIf="updgrdForm.controls['address']['controls'].zip.errors.required">
+                                                Zip code is required
+                                            </div>
+                                            <div
+                                                *ngIf="updgrdForm.controls['address']['controls'].zip.errors.pattern">
+                                                Zip code must be 6 digits
+                                            </div>
+                                        </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" mat-raised-button color="primary" type="submit">
+                                Update
+                            </button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        
+    </div>
+</div>

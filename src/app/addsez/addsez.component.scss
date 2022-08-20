@@ -1,0 +1,114 @@
+// ::ng-deep.mat-form-field.mat-form-field-wrapper.mat-form-field-flex{
+//     background-color:white!important;
+// }
+
+// .mat-form-field-appearance-fill .mat-form-field-flex{
+//     background-color:rgba(0,0,0,0);;
+// }
+
+// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+//     background-color: white;
+//     border-radius: 5px;
+//   }
+
+// ::ng-deep .mat-focused .mat-form-field-label {
+//     /*change color of label*/
+//     color: black !important;
+//    }
+  
+//    ::ng-deep.mat-form-field-underline {
+//     /*change color of underline*/
+//     background-color: grey !important;
+//   } 
+  
+//   ::ng-deep.mat-form-field-ripple {
+//    /*change color of underline when focused*/
+//    background-color: grey !important;;
+//   }
+
+mat-form-field{
+  //   text-align: center;
+  width: 100%;
+}
+
+// .heading{
+//   // font-weight: 400;
+//   }
+
+
+.card-header{
+  background:  linear-gradient(60deg, #E75D6C, #df5f5d);
+  // background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  // background-repeat-x: initial;
+  // background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+
+}
+[class*="card-header-"] {
+  margin: 0px 15px 0;
+  padding: 10px;
+}
+.card-header {
+z-index: 9 !important;
+margin-top: -20px;
+
+.card-title{
+  margin-bottom: 3px;
+}
+
+.card-category{
+  margin: 0;
+}
+.card-header,h4,p{
+   color:white
+   
+}
+
+.mat-button, .mat-raised-button{
+background-color:red;
+} 
+
+
+
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+<div class="container">
+    <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+    <div class="row">
+      <div class="col">
+        <h3>Visitors log</h3>
+      </div>
+    </div>
+    <div class="row mt-2">
+    <div class="col">
+    
+  
+      <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' ></ejs-daterangepicker>
+      
+    </div>
+    <div class="col text-right company">
+      <mat-form-field appearance="none">
+        <mat-label>Select company</mat-label>
+        <mat-select  name="selected_company" >
+          <mat-option  [value]="''">
+            ----select company----
+          </mat-option>
+         
+        </mat-select>
+      </mat-form-field>
+    </div>
+    </div>
+
+<div class="table-responsive">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="fromcompname">
+        <th mat-header-cell *matHeaderCellDef> From  CompanyName</th>
+        <td mat-cell *matCellDef="let element"> {{element.fromcompname}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="tocompname">
+        <th mat-header-cell *matHeaderCellDef> To CompanyName</th>
+        <td mat-cell *matCellDef="let element"> {{element.tocompname}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="menmbers">
+        <th mat-header-cell *matHeaderCellDef> No Of Visitors </th>
+        <td mat-cell *matCellDef="let element"> {{element.menmbers}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="vechileno">
+        <th mat-header-cell *matHeaderCellDef> Vechile No </th>
+        <td mat-cell *matCellDef="let element"> {{element.vechileno}} </td>
+      </ng-container>
+      <ng-container matColumnDef="visitdate">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.visitdate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="visittime">
+        <th mat-header-cell *matHeaderCellDef> Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.visittime}} </td>
+      </ng-container>
+      <ng-container matColumnDef="checked">
+        <th mat-header-cell *matHeaderCellDef>Checkin/Checkout</th>
+        <td mat-cell *matCellDef="let element" class="p-2">
+            <button type="button" class="btn btn-outline-success btn-sm">{{element.checked}}</button>  
+            <button type="button" class="btn btn-outline-danger btn-sm">checkout</button></td>
+      </ng-container>
+      
+      
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  

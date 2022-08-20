@@ -1,0 +1,225 @@
+<div class="text-right mt-2 align-table" >
+  <div class="row">
+    <div class="col-6 text-left">
+      <h1 class="heading">
+        <span class="material-icons sezicon"> corporate_fare </span> SEZ LIST
+      </h1>
+    </div>
+    <div class="col-6 mb-2">
+    
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field
+      class="searchMethod"
+      class="ml-2 d-flex justify-content-start"
+    >
+      <!-- <input
+        matInput
+        [(ngModel)]="searchedText"
+        (keyup.enter)="applyFilter($event)"
+        placeholder=" Search by SEZ name..."
+        #input
+      /> -->
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Sez">
+      <mat-icon
+        *ngIf="searchedText == ''"
+        class="material-icons"
+        matSuffix
+        style="cursor: pointer; color: #6cb33f"
+      >
+        search
+      </mat-icon>
+      <mat-icon
+        *ngIf="searchedText != ''"
+        matSuffix
+        style="cursor: pointer; color: #6cb33f"
+        (click)="clear()"
+        >clear
+      </mat-icon>
+    </mat-form-field>
+
+    </div>
+<div class="col-6">
+
+  <button
+        mat-raised-button
+        color="primary"
+        (click)="addDialog({ block: 'addsez' })"
+      >
+        <span class="material-icons">add</span>Add SEZ
+      </button>
+</div>
+  </div>
+ 
+
+  <!-- </div>
+<div class="container">
+  <div class="card">
+
+  </div>
+</div> -->
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    style="width: 100%"
+    aria-label="Elements"
+    matSort
+    (matSortChange)="sortData($event)"
+  >
+    <!-- SEZ Name -->
+    <ng-container matColumnDef="sezName">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header="sname" sortActionDescription="Sort by name">SEZ Name</th>
+      <td mat-cell *matCellDef="let element">{{ element?.sname }}</td>
+    </ng-container>
+
+    <!-- Location -->
+    
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">Location</th>
+      <td mat-cell *matCellDef="let element">{{ element?.sezlocation }}</td>
+    </ng-container>
+
+    <!-- Admin -->
+    <ng-container matColumnDef="admin">
+      <th mat-header-cell *matHeaderCellDef>Admin</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="{ inactive: element.isActive == false }"
+      >
+        <div *ngIf="element?.username">
+          {{ element?.username }}
+        </div>
+        <div *ngIf="!element?.username">
+          <a
+            class=""
+            style="cursor: pointer; color: blue"
+            (click)="addDialog({ block: 'addadmin', sezObj: element })"
+            >Add Admin</a
+          >
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- admin email -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="{ inactive: element.isActive == false }"
+      >
+        {{ element?.email }}
+      </td>
+    </ng-container>
+    <!-- admin phonenumber -->
+    <ng-container matColumnDef="phonenumber">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="{ inactive: element.isActive == false }"
+      >
+        {{ element?.phonenumber }}
+      </td>
+    </ng-container>
+    <!-- Inactive/active toggle -->
+    <ng-container matColumnDef="account_Status">
+      <th mat-header-cell *matHeaderCellDef>Account Status</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+          [(ngModel)]="element.isActive"
+          (change)="updateaccStatus($event, element)"
+          [disabled]="element.username == null"
+        >
+          <div class="active" *ngIf="element.isActive == true">
+            <p style="color: green; margin: unset">Active</p>
+            <!-- <span class="badge badge-pill badge-success">Active</span> -->
+          </div>
+          <div class="in-active" *ngIf="element.isActive == false">
+            <p style="color: rgb(191, 44, 44); margin: unset">In-Active</p>
+            <!-- <span class="badge badge-pill badge-danger">In-active</span> -->
+          </div>
+        </mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <!-- Update And Delete  -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div class="inline">
+          <!-- <span> -->
+          <!-- <button class="ml-2" mat-mini-fab color="warn" aria-label="Example icon button with a menu icon"
+          (click)="deleteDailog({obj:element})">
+          <i class="fas fa-trash"></i>
+        </button> -->
+          <span
+            class="text-danger"
+            (click)="deleteDailog({ obj: element })"
+            class="material-icons"
+            style="
+              color: rgba(214, 57, 57, 0.994);
+              margin-right: 10px;
+              cursor: pointer;
+            "
+          >
+            delete
+          </span>
+          <span
+            class="material-icons"
+            (click)="updateDailog({ block: 'update', obj: element })"
+            style="
+              color: rgb(113, 144, 211);
+              margin-right: 10px;
+              cursor: pointer;
+            "
+          >
+            create
+          </span>
+          <!-- </span> -->
+          <!-- <span> -->
+          <!-- <button class="ml-2" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+            (click)="updateDailog({block:'update',obj:element})">
+            <i class="fas fa-pen"></i>
+          </button> -->
+          <!-- </span> -->
+          <div></div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <!-- No Records -->
+  <div class="nodata text-center" *ngIf="!sezArray?.length">
+    <div
+      class="d-flex justify-content-center align-items-center mt-5 container"
+    >
+      <img
+        src="../../assets/images/SuperAdmin/undraw_empty_xct9.svg"
+        alt=""
+        height=""
+        width="30%"
+      />
+    </div>
+    <h3>No Records Found</h3>
+  </div>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="getPageLimit($event)">
+</mat-paginator>
+  <!-- <paginator
+    *ngIf="!sezArray?.lengt"
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="count"
+    [pageSize]="pageSize"
+    (page)="getPageLimit($event)"
+  ></paginator> -->
+
+  <!-- [pageIndex]="pageIndex" [pageSize]="pageSize" -->
+</div>

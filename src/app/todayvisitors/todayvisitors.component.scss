@@ -1,0 +1,57 @@
+table {
+    width: 100%;
+  }
+  th.mat-header-cell {
+  
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  
+  background: #F6F9FC;
+  border: 1px solid #E9ECEF;
+  box-sizing: border-box;
+  border: hidden;
+  align-items: center;
+  text-align:left;
+  // font-family: Poppins;
+  font-style: normal;
+  // font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  /* or 150% */
+  
+  color: #8898AA;
+  }
+  
+  
+  // td.mat-cell{
+  //     // font-weight: 500;
+  //     // color: grey;
+  // }
+  
+  
+  td.mat-cell{
+  
+  
+  // position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  
+  
+  background: #FFFFFF;
+  border-bottom: 1px solid #E0E0E0;
+  // border-left: 1px solid #E0E0E0;
+  // box-sizing: border-box;
+  // border:hidden;
+  text-align: left;
+  // font-family: Poppins;
+  font-style: normal;
+  font-weight: 410;
+  font-size: 14px;
+  line-height: 35px;
+  color:#000000;
+  
+  }

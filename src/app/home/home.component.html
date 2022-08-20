@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="loginImg">
+        <img src="../../assets/images/vms.png" alt="" style="width:100%;">
+      </div>
+      <h1 class="txt">Visitor Management System</h1>
+    </div>
+    <div class="col-md-6"
+      style="height:100vh;background: linear-gradient(57.59deg, #54B0FF 0%, #8BC4FE 27.56%, #C9DAFD 61.8%, #F0E8FC 86.91%, #FFEDFC 100%);">
+      <form action="" class="p-5 text-center" [formGroup]="loginForm">
+        <div class="avatar p-2">
+          <h1 class="txt1">VMS LOGIN</h1>
+        </div>
+        <div>
+        </div>
+        <div>
+          <!-- <h2 class="heading">USERNAME</h2> -->
+          <mat-form-field appearance="outline" class="feild">
+            <mat-label>Username</mat-label>
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <input matInput formControlName="username" placeholder="username">
+          </mat-form-field>
+        </div>
+        <div>
+          <!-- <h2 class="heading" style="margin-left:10px;">PASSWORD</h2> -->
+          <mat-form-field appearance="outline" class="feild">
+            <mat-label>Password</mat-label>
+            <input matInput  formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button style="height: 1px;" mat-icon-button matSuffix (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>   
+          </mat-form-field>
+          <br>
+          <a color="primary" (click)="forgotpassword()"><b>Forgot Password</b></a>
+        </div>
+        <button mat-raised-button color="primary" class="btn-size" value="Login" (click)="submit()">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

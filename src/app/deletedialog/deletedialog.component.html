@@ -1,0 +1,22 @@
+<div class="container-fluid ">
+    <div class="text-right  "> 
+        <i class="fas fa-times" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+    </div>
+<div class="container text-center pb-3">
+    <div mat-dialog-content *ngIf="!deleteObj">
+        <p>Are you want to delete ?</p>
+      </div>
+    <div mat-dialog-content *ngIf="deleteObj?.sname && deleteObj?.username">
+        <p>Are you sure want to Delete the ADMIN ?</p>
+      </div>
+      <div mat-dialog-content *ngIf="deleteObj?.sname && !deleteObj?.username">
+        <p>Are you want to Delete the SEZ ?</p>
+      </div>
+      <!-- <div  class="text-center"> -->
+        <button mat-button mat-raised-button color="warn" cdkFocusInitial (click)="delete(true)" class="m-2 shadow">Yes</button>
+        <button mat-button mat-raised-button (click)="delete(false)" class="m-2 shadow">No </button>
+      <!-- </div> -->
+
+</div>
+</div>
+

@@ -1,0 +1,217 @@
+<!-- admin form-->
+<div class="container" *ngIf="dataFromSuperAdmin.block=='addadmin'">
+    <i class="fas fa-times float-right" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+    <h3>ADD ADMIN</h3>
+    <form [formGroup]="adminForm">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md ">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="fname"   placeholder=" Admin First Name" id="fnam" (keyup)="caps($event)">
+                    <mat-error *ngIf="adminForm.controls['fname'].invalid ">
+                        <div *ngIf="adminForm.controls['fname'].errors.required">
+                            First name is required
+                        </div>
+                        <div *ngIf="adminForm.controls['fname'].errors.pattern">
+                            Please Enter Alphabet only 
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lname" placeholder=" Admin First Name" id="lnam" (keyup)="caps($event)">
+                    <mat-error *ngIf="adminForm.controls['lname'].invalid">
+                        <div *ngIf="adminForm.controls['lname'].errors.required">
+                            Last name is required
+                        </div>
+                        <div *ngIf="adminForm.controls['lname'].errors.pattern">
+                            Please Enter Alphabet only 
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Admin Username</mat-label>
+                    <input matInput formControlName="username" placeholder="Admin Username">
+                    <mat-error *ngIf="adminForm.controls['username'].invalid ">
+                        <div
+                            *ngIf="adminForm.controls['username'].errors.required">
+                            User name is required
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Admin password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Admin password">
+                    <!-- <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    <mat-error *ngIf="adminForm.controls['password'].invalid ">
+                        <div
+                            *ngIf="adminForm.controls['password'].errors.required">
+                            Password is required
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput  type="email" formControlName="email" placeholder="AdminEmail">
+                    <mat-error *ngIf="adminForm.controls['email'].invalid ">
+                        <div *ngIf="adminForm.controls['email'].errors.required">
+                            email is required
+                        </div>
+                        <div *ngIf="adminForm.controls['email'].errors.pattern">
+                            Please provide a valid email address
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone Number(admin)</mat-label>
+                    <input matInput formControlName="phonenumber" maxlength="10" placeholder="Phone Number(admin)">
+                   
+                    <span matPrefix>+91 &nbsp;</span>
+                    <mat-error *ngIf="adminForm.controls['phonenumber'].invalid ">
+                        <div *ngIf="adminForm.controls['phonenumber'].errors.required">
+                            Phone number is required
+                        </div>
+                        <div *ngIf="adminForm.controls['phonenumber'].errors.pattern">
+                            Invalid phone number
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6">
+
+            </div> -->
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" (click)="addAdmin()">Submit</button>
+        </div>
+    </form>
+</div>
+
+<!-- update form-->
+<div class="container" *ngIf="dataFromSuperAdmin.block=='update'">
+    <i class="fas fa-times float-right" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+    <h3>UPDATE</h3>
+    <form [formGroup]="updateForm">
+        <div class="row ">
+
+            <div class="col-md ">
+                <div formGroupName="updateSez" [formGroup]="updateForm?.controls.updateSez">
+                    <mat-form-field>
+                        <input matInput formControlName="sname" placeholder="SEZ Name" id="sname2" (keyup)="caps($event)">
+                        <mat-error *ngIf="updateForm.controls['updateSez']['controls'].sname.invalid ">
+                            <div *ngIf="updateForm.controls['updateSez']['controls'].sname.errors.required">
+                                First name is required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="sezlocation" placeholder="Location" id="sezlocatio" (keyup)="caps($event)">
+                        <mat-error *ngIf="updateForm.controls['updateSez']['controls'].sezlocation.invalid ">
+                            <div *ngIf="updateForm.controls['updateSez']['controls'].sezlocation.errors.required">
+                                First name is required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div formGroupName="updateAdmin" [formGroup]="updateForm.controls.updateAdmin">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="fname" placeholder="  First Name" id="fname" (keyup)="caps($event)">
+                        <mat-error *ngIf="updateForm.controls['updateAdmin']['controls'].fname.invalid ">
+                            <div *ngIf="updateForm.controls['updateAdmin']['controls'].fname.errors.required">
+                                First name is required
+                            </div>
+                            <div *ngIf="adminForm.controls['updateAdmin']['controls'].errors.pattern">
+                                Please Enter Alphabet only 
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lname" placeholder=" Last Name" (keyup)="caps($event)">
+                        <mat-error *ngIf="updateForm.controls['updateAdmin']['controls'].lname.invalid">
+                            <div *ngIf="updateForm.controls['updateAdmin']['controls'].lname.errors.required">
+                                Last name is required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <!-- updateForm.controls['updateAdmin']['controls'].username -->
+                        <mat-label>Admin Username</mat-label>
+                        <input matInput formControlName="username" placeholder="Admin Username" readonly>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" placeholder="AdminEmail">
+                        <mat-error *ngIf="updateForm.controls['updateAdmin']['controls'].email.invalid ">
+                            <div *ngIf="updateForm.controls['updateAdmin']['controls'].email.errors.required">
+                                email is required
+                            </div>
+                            <div *ngIf="updateForm.controls['updateAdmin']['controls'].email.errors.pattern">
+                                Please provide a valid email address
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Phone Number(admin)</mat-label>
+                        <input matInput type="number" formControlName="phone" placeholder="Phone Number(admin)" maxlength="10" >
+                        <span matPrefix>+91 &nbsp;</span>
+                        <mat-error *ngIf="updateForm.controls['updateAdmin']['controls'].phone.invalid ">
+                            <div *ngIf="updateForm.controls['updateAdmin']['controls'].phone.errors.required">
+                                Phone number is required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" (click)="update()">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- <p>addsez works!</p> -->
+<div class="con" *ngIf="dataFromSuperAdmin.block=='addsez' ">
+    <i class="fas fa-times float-right" (click)="dialogRef.close()" style="cursor: pointer;"></i>
+    <h3>ADD SEZ Details</h3>
+    <form [formGroup]="sezForm">
+        <div class="row ">
+            <div class="col-md-6 ">
+                <mat-form-field>
+                    <input matInput formControlName="sname" placeholder="SEZ Name" id="sname" (keyup)="caps($event)">
+                    <mat-error *ngIf="sezForm.controls['sname'].invalid ">
+                        <div *ngIf="sezForm.controls['sname'].errors.required">
+                            Sez name is required
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput formControlName="sezlocation" placeholder="Location" id="sezlocation" (keyup)="caps($event)">
+                    <mat-error *ngIf="sezForm.controls['sezlocation'].invalid ">
+                        <div *ngIf="sezForm.controls['sezlocation'].errors.required">
+                            Sez Location is required
+                        </div>
+                        <div *ngIf="sezname != ''" class="alert alert-danger">
+                            {{sezname}} 
+                          </div>   
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button class="addsezbtn" color="primary" (click)="addSez()">Submit</button>
+        </div>
+    </form>
+</div>

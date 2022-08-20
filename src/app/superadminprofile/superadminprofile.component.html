@@ -1,0 +1,59 @@
+<mat-card class="mt-4 m-5 p-5">
+  <h1 style="color: #676883;"> Profile</h1>
+  <hr mb-4>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex">
+          <div class="col-md-10">
+            <h2  style="color: #676883;"><b>Your Details</b></h2>
+          </div>
+       <div class="col-md-2 float-right">
+         <button mat-button (click)="updateDailog(profileObj)" style="background-color: rgb(64, 64, 160); color:white">Edit</button>
+       </div>
+        </div>
+    
+        <div *ngFor="let v of profileObj">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Userame</label>
+            <div class="d-flex">
+              <input  class="form-control"  value="{{v.username|titlecase}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Email</label>
+            <span class="d-flex">
+            <input  class="form-control" value="{{v.email}}" readonly>
+          </span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Phone Number</label>
+            <span class="d-flex">
+              <input  class="form-control" value="{{v.phonenumber}}" readonly>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <div class=" img-c">
+          <img [src]="imageurl" #myProfileImage alt="dp" class="profileD" height="220px" width="220px"
+            style="border-radius: 50%;">
+          <div class="d-flex" style="margin: 12px 0px 12px 64px;">
+            <form #upload="ngForm" (ngSubmit)="uploadExcel(upload.value)">
+              <label for="upload" class="upload p-1"><i class="bi bi-cloud-arrow-up"></i> Change </label>
+              <input type="file" id="upload" name="image" (change)="fileUpload($event)" class="foo" ngModel hidden />
+              <div>
+                <button class="btn btn-success mt-4" type="submit" *ngIf="showUploadBtn">Upload</button>
+              </div>
+            </form>
+            <!-- <button class="btn-sm  upload " (click)="removeprofilepic()">
+              <i class="fas fa-trash"></i>
+              Remove
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

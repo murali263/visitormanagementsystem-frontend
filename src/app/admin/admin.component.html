@@ -1,0 +1,128 @@
+<div class="row">
+  <div>
+    <div class="text-right m-2 mt-0 pr-0">
+      <h1 class="text-left" style="font-weight: 600;"> </h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid pt-2">
+  <div class="row">
+    <div class="text-left">
+      <h2> Add Guards :</h2>
+    </div>
+    <div class="text-right" style="    margin-top: -40px;">
+      <i class="fas fa-times text-right" (click)="dialogRef.close()" style="cursor: pointer;color: red;"></i>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container-fluid pb-3 scroll">
+  <div class="d-flex  justify-content-center align-items-center gap-3">
+    <form [formGroup]="addGuardform" (ngSubmit)="addGuard()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="addmoreformcontrols">
+     <!-- firstname -->
+     <mat-form-field appearance="outline">
+      <mat-label>Full Name </mat-label>
+      <input matInput formControlName="fname" class="feild" (keypress)="letterOnly($event)">
+      <mat-icon matPrefix>person_outline</mat-icon>
+      <mat-error *ngIf="addGuardform.controls['fname'].invalid ">
+          <div *ngIf="addGuardform.controls['fname'].errors?.required">
+              Fullname is required
+          </div>
+          <div *ngIf="addGuardform.controls['fname'].errors?.pattern">
+              {{characterspattern}}
+          </div>
+      </mat-error>
+  </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="User Name" formControlName="userName">
+              <mat-icon matPrefix>person_outline</mat-icon>
+              <mat-error *ngIf="addGuardform.controls.userName?.invalid ">
+                <div *ngIf="addGuardform.controls['userName'].errors?.required">
+                    {{emptyUserName}}
+                </div>
+                <div *ngIf="addGuardform.controls.userName?.dirty && addGuardform.controls.userName.errors?.minlength">
+                    {{minlengthUserName}}
+                </div>
+                <div *ngIf="addGuardform.controls.userName?.dirty && addGuardform.controls.userName.errors?.maxlength">
+                    {{maxlengthUserName}}
+                </div>
+              
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="addGuardform.controls['email'].invalid ">
+                <div *ngIf="addGuardform.controls['email'].errors?.required">
+                    Email is required
+                </div>
+                <div *ngIf="addGuardform.controls['email'].errors?.pattern">
+                    Email is invalid
+                </div>
+            </mat-error>
+            </mat-form-field>
+         
+       
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="Phone Number" formControlName="phoneNumber" id="phoneNumber">
+            <mat-icon matPrefix>call</mat-icon>
+            <mat-error *ngIf="addGuardform.controls['phoneNumber'].invalid ">
+              <div *ngIf="addGuardform.controls['phoneNumber'].errors?.required">
+                  Phone Number is required
+              </div>
+              <div
+              *ngIf="addGuardform.controls.phonenumber?.dirty && addGuardform.controls.phoneNumber.errors?.maxlength">
+              {{maxlengthPhoneNumber}}
+          </div>
+          <div
+              *ngIf="addGuardform.controls.phonenumber?.dirty && addGuardform.controls.phoneNumber.errors?.pattern">
+              {{PhoneNumberPattern}}
+          </div>
+          </mat-error>
+          </mat-form-field>
+ 
+ 
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>ActiveLocation</mat-label>
+            <input matInput placeholder="ActiveLocation" formControlName="ActiveLocation" id="ActiveLocation">
+            <mat-icon matPrefix>where_to_vote</mat-icon>
+            <mat-error *ngIf="addGuardform.controls['ActiveLocation'].invalid">
+              <div *ngIf="addGuardform.controls['ActiveLocation'].errors?.required">
+                ActiveLocation is required
+              </div>
+          </mat-error>
+          </mat-form-field>
+          <div class="text-center">
+            <button mat-raised-button color="primary" type="submit">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button  (click)="dialogRef.close()" style="cursor: pointer;background-color:rgb(224, 43, 43);color:white">Cancel</button>
+          </div>
+       
+        </div>
+
+
+      </div>
+
+
+
+
+      <br>
+
+
+      
+
+
+
+    </form>
+  </div>
+</div>
